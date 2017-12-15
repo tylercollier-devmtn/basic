@@ -10,9 +10,13 @@ It is important to remember that this is first and foremost a learning experienc
   * Writing a basic axios call
   * Building the corresponding Endpoint
 
-**Create React App** - By now you should have `create-react-app` installed, but if this isn't the case run `npm install -g create-react-app`.  When that is finished, cd into the folder where you would like to create your new app and run `create-react-app <name>` (replace name in the command with the name that you would like to give your project).  Please note that `create-react-app` will create a folder with the newly created basic react app inside of it. Once create-react-app finishes, cd into the project directory and run `npm start`. You have now created a new react app!
+## Create React App
 
-**Setting Up Server File** - The first step in creating your server is setting up the file structure. It is recommended that you create a folder in the root of your project called `server`. Inside the server folder, create a file called `server.js`. Be aware that this file structre is not requrired to create a server, it is just a common and clean set up. Now you are ready to open up your server.js file. You will need to install three dependencies for this file: express, body-parser and cors.  To do this open up your terminal, make sure you are in your project's root, and run either `npm install --save express body-parser cors` or `yarn add express body-parser cors`.  
+By now you should have `create-react-app` installed, but if this isn't the case run `npm install -g create-react-app`.  When that is finished, cd into the folder where you would like to create your new app and run `create-react-app <name>` (replace name in the command with the name that you would like to give your project).  Please note that `create-react-app` will create a folder with the newly created basic react app inside of it. Once create-react-app finishes, cd into the project directory and run `npm start`. You have now created a new react app!
+
+## Setting Up the Server File
+
+The first step in creating your server is setting up the file structure. It is recommended that you create a folder in the root of your project called `server`. Inside the server folder, create a file called `server.js`. Be aware that this file structre is not requrired to create a server, it is just a common and clean set up. Now you are ready to open up your server.js file. You will need to install three dependencies for this file: express, body-parser and cors.  To do this open up your terminal, make sure you are in your project's root, and run either `npm install --save express body-parser cors` or `yarn add express body-parser cors`.  
 
 You will then need to import those dependencies in your server.js file. 
 ```javascript
@@ -38,7 +42,9 @@ app.listen(port, () => console.log(`Server listening on port ${port}...`));
 
 These are the basic steps to getting your first server built and running!
  
-**Running Nodemon** - Now in order to make that server functional we need to run NodeJS. Node is a run-time environment for executing JavaScript code server-side. We can just run `node server/server.js` to get it up and running, but we would have to restart our server (Node) each time we made a change. Enter Nodemon. Nodemon is a utility that will monitor for any changes in your sever and automatically restart it for you, which is awesome for development! If you haven't installed nodemon yet, the command is `npm install -g nodemon`. (We are installing nodemon globally because it will be useful for every project you make going forward). 
+## Running Nodemon
+
+Now in order to make that server functional we need to run NodeJS. Node is a run-time environment for executing JavaScript code server-side. We can just run `node server/server.js` to get it up and running, but we would have to restart our server (Node) each time we made a change. Enter Nodemon. Nodemon is a utility that will monitor for any changes in your sever and automatically restart it for you, which is awesome for development! If you haven't installed nodemon yet, the command is `npm install -g nodemon`. (We are installing nodemon globally because it will be useful for every project you make going forward). 
  
 Once nodemon is installed you can run `nodemon` and point it at your server `server/server.js` for a total command of `nodemon server/server.js`. That is a perfectly fine way to do things but we are developers now! The less typing the better! We can rid the need of typing `server/server` after our nodemon call each time very easily. To do this open up your package.json file and underneath the property `private` insert the line:
 
@@ -48,7 +54,9 @@ Once nodemon is installed you can run `nodemon` and point it at your server `ser
 
 Be sure to remember the trailing `,` so that you have a valid JSON document! Then in the terminal run `nodemon`. You have now officially created a server and have it up and running.
  
-**Making An Axios Call** - It's time to get our front end (React side) talking to our back end (Node side)!  First install axios with `npm install --save axios` or `yarn add axios`.  Create-react-app builds a shell App component for you, but for this component we will need state.  Add a constructor, super, and state to your component so that when we make our axios call we can save that information. For this demonstration we will be receiving an image link from the server to display in the React app. Let's go ahead and create a piece of state named `picture` that will be an empty string. The top of your component should look something like this:
+## Making An Axios Call
+
+It's time to get our front end (React side) talking to our back end (Node side)!  First install axios with `npm install --save axios` or `yarn add axios`.  Create-react-app builds a shell App component for you, but for this component we will need state.  Add a constructor, super, and state to your component so that when we make our axios call we can save that information. For this demonstration we will be receiving an image link from the server to display in the React app. Let's go ahead and create a piece of state named `picture` that will be an empty string. The top of your component should look something like this:
 
 ```javascript
 class App extends Component {
@@ -74,7 +82,9 @@ componentDidMount() {
 }
 ```
 
-**Building The Correponding Endpoint** - Now we need to build an endpoint to receive the axios call that we are making on our front end. This endpoint will take in information sent in the request (`req`) and use it to perform a task, then send it back to the front end in a response (`res`).  In this case, the front end is sending a "get" request because it wants to simply receive information. We must match the type of request, therefore we will be creating an `app.get` endpont. The URL of this endpoint will need to match what we had in our axios call `/api/test`. Inside the callback of the endpoint we need to specify what exactly the get response will send back to the front end, in this case a link. It should look like this: 
+## Building The Correponding Endpoint
+
+Now we need to build an endpoint to receive the axios call that we are making on our front end. This endpoint will take in information sent in the request (`req`) and use it to perform a task, then send it back to the front end in a response (`res`).  In this case, the front end is sending a "get" request because it wants to simply receive information. We must match the type of request, therefore we will be creating an `app.get` endpont. The URL of this endpoint will need to match what we had in our axios call `/api/test`. Inside the callback of the endpoint we need to specify what exactly the get response will send back to the front end, in this case a link. It should look like this: 
 
 ```javascript
 app.get('/api/test', (req, res)=> {
